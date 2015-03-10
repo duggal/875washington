@@ -16,8 +16,17 @@ body{
 	padding: 0;
 	width: 2160px;
 	height: 3840px;
-	background-image: url("../img/background.png");
-	background-repeat: no-repeat;
+}
+
+img#background-img{
+	z-index: -1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	width: 2160px;
+	height: 3840px;
 }
 
 #logo{
@@ -31,10 +40,10 @@ body{
 
 #content{
 	position: fixed;
-	top: 1012px;
+	top: 1011px;
 	left: 162px;
 	width: 1880px;
-	height: 1558px;
+	height: 1368px;
 	margin: 0;
 	padding: 0;
 	overflow: scroll;
@@ -50,11 +59,13 @@ body{
 	padding: 0;
 }
 
-.menu-button{
+.menu-button-blue{
+	transition: all .2s ease-in-out;
 	width: 456px;
 	height: 460px;
 	background-color: #3d5e8d;
-	margin: 4px;
+	border: 0px;
+	margin: 2px;
 	padding: 0px;
 	float: left;
 	display: table;
@@ -62,15 +73,68 @@ body{
 	font-size: 53px;
 }
 
-.menu-button p{
+.menu-button-white{
+	transition: all .2s ease-in-out;
+	width: 456px;
+	height: 460px;
+	border: 0px;
+	background-color: #ffffff;
+	margin: 2px;
+	padding: 0px;
+	float: left;
+	display: table;
+	font-family: 'Gothic-Bold';
+	font-size: 53px;
+}
+
+.triangle{
+	transition:all .2s ease-in-out;
+	border-color: transparent transparent white transparent;
+}
+
+
+.triangle:after, .menu-button:before {
+	transition: all .2s ease-in-out;   
+        bottom: 459px;
+        border: solid transparent;
+        content: " ";
+        height: 0px;
+        width: 0px;
+        position: absolute;
+        pointer-events: none;
+	margin-left: -454px;
+}
+
+.triangle:after {
+	border-color: transparent transparent white transparent;
+	transition: all .2s ease-in-out;   
+	border-width: 0px 230px 100px 230px;
+	height: 0px;
+	width: 0px;
+}
+
+.triangle-transparent:after {
+	border-color: transparent transparent transparent transparent;
+	transition: all .2s ease-in-out;   
+	border-width: 0px 230px 100px 230px;
+	height: 0px;
+	width: 0px;
+}
+
+.button-text{
 	display: table-cell;
 	vertical-align: middle; 
 	text-align: center; 
 }
 
+.button-text p{
+	margin: 0px;
+}
+
+
 #scroller{
 	position: fixed;
-	top: 2588px;
+	top: 2568px;
 	left: 162px;
 	width: 1880px;
 	text-align:center;	
@@ -119,6 +183,8 @@ body{
 
 #leasing-table{
 	width: 1880px;
+	border-collapse:separate; 
+	border-spacing:20px;
 }
 
 #leasing-table tr{
@@ -145,11 +211,10 @@ body{
 }
 
 #history{
-	width: 1880px;
+	width: 1830px;
 	font-family: 'Gothic-Medium';
 	font-size: 38px;
 	color: #FFFFFF;
-	padding: 40px;
 }
 
 p{
@@ -172,12 +237,54 @@ p.number{
 	font-size: 80px;
 }
 
+p#history-number{
+	font-size: 134px;
+}
+
 .img-left{
 	margin: 40px;
+	margin-top: 0px;
 	float: left;
 }
 
 .img-right{
 	margin: 40px;
+	margin-top: 0px;
 	float: right;
+}
+
+#content{
+	scrollbar-face-color: #367CD2;
+	scrollbar-shadow-color: #FFFFFF;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-3dlight-color: #FFFFFF;
+	scrollbar-darkshadow-color: #000000;
+	scrollbar-track-color: #283d5d;
+	scrollbar-arrow-color: #283d5d;
+	overflow-x: hidden;
+}
+
+/* Let's get this party started */
+#content::-webkit-scrollbar {
+    width: 50px;
+}
+ 
+/* Track */
+#content::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: #253957;
+}
+
+#content::-webkit-scrollbar-corner{
+	background: transparent;
+}
+ 
+/* Handle */
+#content::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #3d5e8d; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
