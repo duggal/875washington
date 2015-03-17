@@ -36,8 +36,14 @@ def teardown_request(exception):
 
 #views
 @app.route('/')
+def show_directory():
+	cur = g.db.execute('select name, number from tenants order by name asc')
+	tenants = [dict(name=row[0], number=row[1]) for row in cur.fetchall()]
+	return render_template('index.html', tenants=tenants)
+
+@app.route('/show')
 def show_tenants():
-	cur = g.db.execute('select name, number from tenants order by id desc')
+	cur = g.db.execute('select name, number from tenants order by name asc')
 	tenants = [dict(name=row[0], number=row[1]) for row in cur.fetchall()]
 	return render_template('show_tenants.html', tenants=tenants)
 
@@ -70,9 +76,41 @@ def logout():
 	flash('You were logged out')
 	return redirect(url_for('show_tenants'))
 
-	
-	
+#initalize backend and db
+@app.route('/setup')
+def setup_tenants():
+	#setup a dictionary with tenants name and number
+	default_tenants = {
 
+		'tenants' : [
+		('Arch Entertainment', '207'),
+		('ASB Real Estate Investments', '302/302A'),
+		('Bond Creative Search, Inc.', '503'),
+		('Clinic LLC', '501/503/504'),
+		('Crowdpleaser Music/Face the Music/Wildfire', '307'),
+		('Daryanini & Bland, PC Option', '305/306'),
+		('Indian Paintbrush Productions', '502'),
+		('Kyle Editing, LLC', '500/507'),
+		('Luthien Group', '205'),
+		('Palantir Technologies', '4th Floor'),
+		('Pension Partners', '505'),
+		('Rena Lange', '201/201A/204'),
+		('Rock World USA, LLC', '300'),
+		('TOMS', '203'),
+		('Zimmermann (USA) Inc.', '301')
+		]
+
+	}
+	#for each entry in the dictionary
+		
+	for defaulttenants, tenants in default_tenants.items():
+		for name, number in tenants:
+			g.db.execute('insert into tenants(name, number) values (?, ?)', [name, number])
+	    	g.db.commit()
+
+	cur = g.db.execute('select name, number from tenants order by id desc')
+	tenants = [dict(name=row[0], number=row[1]) for row in cur.fetchall()]
+	return render_template('index.html', tenants=tenants)
 
 if __name__ == '__main__':
 	app.run()

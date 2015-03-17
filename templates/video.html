@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+	
+#bg{	position: fixed;
+		top:0;
+		left:0;
+		margin:0;
+		padding:0;
+		width:100%;
+		height:100%;
+	
+}
+	
+	
+	
+
+</style>
+
+<script src="jquery-1.11.1.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    $('html').keydown(function(e){
+        if(e.keyCode == 85){
+						$('html').animate({"opacity":"0"},2000,function(){
+			            window.location.href = "Directory.html";
+			            });
+			    }
+      });
+});  
+    
+</script>    
+<body>
+
+	<video src="shimmy.mp4" id="bg" width="1080" height="1920" loop autoplay >
+
+</body>
+</html>
