@@ -19,68 +19,6 @@
 					<td class="number">{{ tenant.number|safe }}</td>
 				</tr>
 			{% endfor %}	
-			<!--
-			<tr>
-				<td class="name">Arch Entertainment</td>
-				<td class="number">207</td>
-			</tr>
-    			<tr>
-				<td class="name">ASB Real Estate Investments</td>
-				<td class="number">302/302A</td>
-			</tr>
-    			<tr>
-				<td class="name">Bond Creative Search, Inc.</td>
-				<td class="number">503</td>
-			</tr>
-    			<tr>
-				<td class="name">Clinic LLC</td>
-				<td class="number">501/503/504</td>
-			</tr>
-    			<tr>
-				<td class="name">Crowdpleaser Music/Face the Music/Wildfire</td>
-				<td class="number">307</td>
-			</tr>
-    			<tr>
-				<td class="name">Daryanini & Bland, PC Option</td>
-				<td class="number">305/306</td>
-			</tr>
-    			<tr>
-				<td class="name">Indian Paintbrush Productions</td>
-				<td class="number">502</td>
-			</tr>
-    			<tr>
-				<td class="name">Kyle Editing, LLC</td>
-				<td class="number">500/507</td>
-			</tr>
-    			<tr>
-				<td class="name">Luthien Group</td>
-				<td class="number">205</td>
-			</tr>
-    			<tr>
-				<td class="name">Palantir Technologies</td>
-				<td class="number">4th Floor</td>
-			</tr>
-    			<tr>
-				<td class="name">Pension Partners</td>
-				<td class="number">505</td>
-			</tr>
-    			<tr>
-				<td class="name">Rena Lange</td>
-				<td class="number">201/201A/204</td>
-			</tr>
-    			<tr>
-				<td class="name">Rock World USA, LLC</td>
-				<td class="number">300</td>
-			</tr>
-    			<tr>
-				<td class="name">TOMS</td>
-				<td class="number">203/302A</td>
-			</tr>
-    			<tr>
-				<td class="name">Zimmermann (USA) Inc.</td>
-				<td class="number">301</td>
-			</tr>
-			-->
     		</table>
 	</div>
 	<div id="leasing">
@@ -89,7 +27,8 @@
 				<td class="info">
 				<p class="title">OFFICE LEASING</p>
 				<br>
-				<p class="details">ADAM RAPPORT - arapport@thorequities.com</p>
+				<br>
+				<p class="details">ADAM RAPPAPORT - arappaport@thorequities.com</p>
 				<br>
 				<p class="number">(212) 432-3030</p>
 				</td>
@@ -97,6 +36,7 @@
 			<tr>
 				<td class="info">
 				<p class="title">RETAIL LEASING</p>
+				<br>
 				<br>
 				<p class="details">ALEXANDRA FRANGOS - afrangos@thorequities.com</p>
 				<br>
@@ -111,6 +51,7 @@
     			<tr>
 				<td class="info">
 				<p class="title">MANAGEMENT</p>
+				<br>
 				<br>
 				<p class="details">COGSWELL + SIERRA MANAGEMENT CALL CENTER</p>
 				<br>
@@ -177,7 +118,7 @@
 	<br>
 	<br>
 	<div class="img-left">
-		<img src="img/{{ url_for('static', filename='05875.jpg') }}">	
+		<img src="{{ url_for('static', filename='img/05875.jpg') }}">	
 	</div>
 	<p>
 	As the Whitney Museum of American Art settles into its new home a block away, 875 Washington endures as the most imposing survivor of the old Gansevoort Market days, its cornice restored, its cast iron and canopies intact and its preeminence in the district assured for the next chapter of New York's history.
@@ -200,15 +141,14 @@
 		
 	</div>
 
-	<div id="menu">	
 
-		<div class="menu-button-blue" id="directory-button">
+		<div id="directory-button" class="menu-button-blue">
 			<div class="button-text">
 				<p>DIRECTORY</p>
 			</div>
 		</div>
 		
-		<div class="menu-button-blue" id="leasing-button">
+		<div id="leasing-button" class="menu-button-blue">
 			<div class="button-text">
 				<p>LEASING</p>
 			</div>
@@ -220,7 +160,7 @@
 			</div>
 		</div>
 		
-		<div class="menu-button-blue" id="history-button">
+		<div class="menu-button-blue menu-button-book-font" id="history-button">
 			<div class="button-text">
 				<p style="font-size: 120px;">875</p>
 				<br>
@@ -228,7 +168,6 @@
 			</div>
 		</div> 
 
-	</div>
 </body>
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </html>
