@@ -300,6 +300,10 @@ p#history-number{
 	font-size: 134px;
 }
 
+.gotham-bold{
+	font-family: "Gotham-Bold"
+}
+
 .img-left{
 	margin: 40px;
 	margin-top: 0px;
