@@ -44,8 +44,9 @@ def show_directory():
 
 @app.route('/show')
 def show_tenants():
-	cur = g.db.execute('select name, number from tenants order by name asc')
-	tenants = [dict(name=row[0], number=row[1]) for row in cur.fetchall()]
+	cur = g.db.execute('select name, number, id from tenants order by name asc')
+	tenants = [dict(name=row[0], number=row[1], id=row[2]) for row in cur.fetchall()]
+	tenants = sorted(tenants, key=lambda k: k['name'].lower()) #case insensitive sorting
 	return render_template('show_tenants.html', tenants=tenants)
 
 @app.route('/addtenant', methods=['POST'])
@@ -56,6 +57,15 @@ def add_tenant():
 	g.db.commit()
 	flash('new entry was successfully posted!')
 	return redirect(url_for('show_tenants'))
+
+@app.route('/deletetenant/<int:id>', methods=['POST'])
+def delete_tenant(id):
+	if not session.get('logged_in'):
+		abort(401)
+	g.db.execute('delete from tenants WHERE id = ?', [id] )
+	g.db.commit()
+	flash('tenant was successfully deleted!')
+	return redirect(url_for('show_tenants'))	
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

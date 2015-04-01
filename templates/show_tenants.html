@@ -12,13 +12,13 @@
 			</dl>
 		</form>
 	{% endif %}
-	<ul class=tenants>
 		{% for tenant in tenants %}
-			<li><h2>{{ tenant.name }}</h2>{{ tenant.number|safe }}
-			<p>---
+			<h2>{{ tenant.name }}</h2>{{ tenant.number|safe }}
+			<form action="{{ url_for('delete_tenant', id=tenant.id) }}" method=post>
+				<input type=submit value=Delete>
+			</form>
 			<br>
 		{% else %}
 			<li><em>No tenants!</em>
 		{% endfor %}
-	</ul>
 {% endblock %}
