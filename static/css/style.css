@@ -316,6 +316,15 @@ p#history-number{
 	float: right;
 }
 
+p#building-text{
+	line-height: 80px;
+}
+
+
+p#history-text{
+	line-height: 140px;
+}
+
 #content{
 	scrollbar-face-color: #367CD2;
 	scrollbar-shadow-color: #FFFFFF;

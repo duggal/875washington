@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 from contextlib import closing
 
 #configuration
-DATABASE = '/tmp/875wash.db'
+DATABASE = 'db/875wash.db'
 DEBUG = True
 SECRET_KEY = 'devkey'
 USERNAME = 'admin'
@@ -39,6 +39,7 @@ def teardown_request(exception):
 def show_directory():
 	cur = g.db.execute('select name, number from tenants order by name asc')
 	tenants = [dict(name=row[0], number=row[1]) for row in cur.fetchall()]
+	tenants = sorted(tenants, key=lambda k: k['name'].lower()) #case insensitive sorting
 	return render_template('index.html', tenants=tenants)
 
 @app.route('/show')
@@ -79,30 +80,29 @@ def logout():
 #initalize backend and db
 @app.route('/setup')
 def setup_tenants():
+	
 	#setup a dictionary with tenants name and number
 	default_tenants = {
 
 		'tenants' : [
 		('Arch Entertainment', '207'),
-		('ASB Real Estate Investments', '302/302A'),
+		('ASB Real Estate Investments', '302'),
 		('Bond Creative Search, Inc.', '503'),
-		('Clinic LLC', '501/503/504'),
+		('Clinic LLC', '504'),
 		('Crowdpleaser Music/Face the Music/Wildfire', '307'),
-		('Daryanini & Bland, PC Option', '305/306'),
+		('Daryanini & Bland PC', '304/305'),
 		('Indian Paintbrush Productions', '502'),
 		('Kyle Editing, LLC', '500/507'),
 		('Luthien Group', '205'),
 		('Palantir Technologies', '4th Floor'),
 		('Pension Partners', '505'),
-		('Rena Lange', '201/201A/204'),
 		('Rock World USA, LLC', '300'),
 		('TOMS', '203'),
 		('Zimmermann (USA) Inc.', '301')
 		]
 
 	}
-	#for each entry in the dictionary
-		
+	#for each entry in the dictionary, insert it to the database	
 	for defaulttenants, tenants in default_tenants.items():
 		for name, number in tenants:
 			g.db.execute('insert into tenants(name, number) values (?, ?)', [name, number])

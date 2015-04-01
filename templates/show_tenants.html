@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 	{% if session.logged_in %}
+		<p>Add a new tenant</a>
 		<form action="{{ url_for('add_tenant') }}" method=post class=add-entry>
 			<dl>
 				<dt>Name:
@@ -14,6 +15,8 @@
 	<ul class=tenants>
 		{% for tenant in tenants %}
 			<li><h2>{{ tenant.name }}</h2>{{ tenant.number|safe }}
+			<p>---
+			<br>
 		{% else %}
 			<li><em>No tenants!</em>
 		{% endfor %}
